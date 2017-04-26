@@ -94,3 +94,11 @@ def remover_comentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk)
     comentario.delete()
     return redirect('blog:receita_detalhe', pk=comentario.receita.pk)
+
+
+def mostra_todas(request):
+    receitas = Receita.objects.all()
+    titulos = []
+    for titulo in receitas:
+        titulos.append(titulo.titulo)
+    return titulos
