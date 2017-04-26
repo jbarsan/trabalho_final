@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for receita in receitas %}
+        <div class="post">
+            <p class="date">Criado: {{ receita.data_criacao|date:'d-m-Y' }}</p>
+            <h1><a href="{% url 'blog:receita_detalhe' pk=receita.pk %}">{{ receita.titulo }}</a></h1>
+            <p><em>Tempo de preparo: {{ receita.tempo_preparo }}</em></p>
+            <p><em>Rendimento: {{ receita.rendimento }}</em></p>
+            <h3>Ingredientes</h3>
+            <p>{{ receita.ingredientes|linebreaksbr }}</p>
+            <!--<p>{{ receita.ingredientes|truncatechars:200 }}</p>-->
+            <h3>Modo de preparo</h3>
+            <p>{{ receita.modo_preparo|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
